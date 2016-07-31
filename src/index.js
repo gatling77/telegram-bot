@@ -4,11 +4,8 @@
 var http = require('http');
 var https = require('https');
 
-// Include TelegramBot package
 var TelegramBot = require('node-telegram-bot-api');
-
-// Telegram bot token (given when you create a new bot using the BotFather);
-var telegramBotToken = '234006299:AAHVUROGpmbmbh4ZNQmVdq9emvygeurfKgA';
+var telegramBotToken = require('./telegram-token.js').token;
 
 // Telegram bot setup
 var telegramBot = new TelegramBot(telegramBotToken, {polling: false});    
@@ -25,8 +22,8 @@ exports.handler = function(event, context, lambdaCallback) {
     var chatId = event.message.chat.id;
     
     // let them know we're working
-    telegramBot.sendMessage(chatId, "hello world!").then(finish)
-
+    //telegramBot.sendMessage(chatId, "hello world!!",{reply_markup:{keyboard:['yes','no']}}).then(finish)
+    telegramBot.sendMessage(chatId, "hello world!!").then(finish)
 
 };
 
