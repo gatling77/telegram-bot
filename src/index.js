@@ -22,7 +22,7 @@ exports.handler = function(event, context, lambdaCallback) {
     var chatId = event.message.chat.id;
     
     // let them know we're working
-   telegramBot.sendMessage(chatId, "hello world!!",
+   telegramBot.sendMessage(chatId, JSON.stringify(event.message),
            {reply_markup:
                JSON.stringify(
                    {keyboard:[['yes','no'],['maybe','fu']]}
