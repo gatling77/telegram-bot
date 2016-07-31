@@ -15,15 +15,18 @@ var telegramBot = new TelegramBot(telegramBotToken, {polling: false});
 // See the 'sample-message.json' file for an example
 exports.handler = function(event, context, lambdaCallback) {
     function finish(){
-        lambdaCallback(null,'')
+        lambdaCallback(null,'');
     }
 
     // parse the chat ID so we can respond
     var chatId = event.message.chat.id;
     
     // let them know we're working
-    //telegramBot.sendMessage(chatId, "hello world!!",{reply_markup:{keyboard:['yes','no']}}).then(finish)
-    telegramBot.sendMessage(chatId, "hello world!!").then(finish)
+   telegramBot.sendMessage(chatId, "hello world!!",
+           {reply_markup:
+               JSON.stringify(
+                   {keyboard:[['yes','no'],['maybe','fu']]}
+                   )}).then(finish);
 
 };
 
