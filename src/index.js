@@ -7,6 +7,8 @@ var https = require('https');
 var TelegramBot = require('node-telegram-bot-api');
 var telegramBotToken = require('./telegram-token.js').token;
 
+var router = require('./router.js');
+
 // Telegram bot setup
 var telegramBot = new TelegramBot(telegramBotToken, {polling: false});    
 
@@ -20,13 +22,20 @@ exports.handler = function(event, context, lambdaCallback) {
 
     // parse the chat ID so we can respond
     var chatId = event.message.chat.id;
-    
-    // let them know we're working
-   telegramBot.sendMessage(chatId, JSON.stringify(event.message),
+
+    var command = router.getCommand(event.message.text);
+
+    var response = command();
+
+    if (response.keyboard){
+        telegramBot.sendMessage(chatId, response.text,
            {reply_markup:
                JSON.stringify(
-                   {keyboard:[['yes','no'],['maybe','fu']]}
+                   {keyboard:response.keyboard}
                    )}).then(finish);
+    }else{
+        telegramBot.sendMessage(chatId, response.text).then(finish);
+    }
 
 };
 

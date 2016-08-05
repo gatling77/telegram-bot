@@ -1,6 +1,7 @@
 {
   "private": true,
   "dependencies": {
-    "node-telegram-bot-api": "*"
+    "node-telegram-bot-api": "*",
+    "lodash": "^4.14.1"
   }
 }

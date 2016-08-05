@@ -1,1 +1,1 @@
-exports.token = '234006299:AAHVUROGpmbmbh4ZNQmVdq9emvygeurfKgA';
+exports.token = '23400629:AAG63fORBENDUuENc7_5JpjJj0nk4Vvldno';
